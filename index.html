@@ -41,13 +41,7 @@ body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 .app { padding: 1rem; max-width: 1200px; margin: 0 auto; }
-
-/* Login screen */
-.login-bg {
-  position: fixed; inset: 0; background: var(--bg);
-  display: flex; align-items: center; justify-content: center; padding: 1rem;
-  z-index: 1000;
-}
+.login-bg { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
 .login-box { width: 100%; max-width: 360px; text-align: center; }
 .login-icon { font-size: 64px; margin-bottom: 1rem; }
 .login-title { font-size: 24px; font-weight: 500; margin: 0 0 0.5rem; }
@@ -56,8 +50,6 @@ body {
 .login-input:focus { outline: 2px solid var(--info); }
 .login-btn { width: 100%; padding: 14px; background: var(--info); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 500; cursor: pointer; }
 .login-error { color: var(--danger); font-size: 13px; margin-top: 8px; min-height: 18px; }
-
-/* Header */
 .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 8px; }
 h1 { font-size: 22px; font-weight: 500; margin: 0; }
 .sync-status { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
@@ -66,36 +58,25 @@ h1 { font-size: 22px; font-weight: 500; margin: 0; }
 .sync-dot.error { background: var(--danger); }
 .sync-dot.syncing { background: var(--info); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-/* Stats */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 1rem; }
 .stat { background: var(--bg2); border-radius: 10px; padding: 0.75rem 1rem; }
 .stat-label { font-size: 12px; color: var(--text2); margin-bottom: 2px; }
 .stat-val { font-size: 22px; font-weight: 500; }
-
-/* Toolbar */
 .toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
 .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
-button, input, select, textarea {
-  font-family: inherit; font-size: 14px; padding: 8px 12px;
-  border: 0.5px solid var(--border); border-radius: 8px; background: var(--primary); color: var(--text);
-  -webkit-appearance: none; appearance: none;
-}
+button, input, select, textarea { font-family: inherit; font-size: 14px; padding: 8px 12px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--primary); color: var(--text); -webkit-appearance: none; appearance: none; }
 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%235F5E5A' d='M6 8L2 4h8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 8px center; padding-left: 24px; }
 button { cursor: pointer; }
 button:active { transform: scale(0.97); }
 .btn-primary { background: var(--info-bg); color: var(--info); border: none; font-weight: 500; }
+.btn-secondary { background: var(--bg2); color: var(--text); border: none; font-size: 13px; padding: 6px 10px; }
 .btn-danger { color: var(--danger); border-color: #f0c0c0; }
+.btn-icon { padding: 4px 8px; font-size: 12px; background: transparent; border: none; color: var(--danger); cursor: pointer; }
 input[type="text"], input[type="date"], input[type="url"], input[type="number"], input[type="password"], textarea, select { width: 100%; }
 input:focus, select:focus, textarea:focus { outline: 1.5px solid var(--info); outline-offset: -1px; }
 #search { flex: 1; min-width: 140px; }
-
-/* Task list */
 .list { display: flex; flex-direction: column; gap: 8px; }
-.task {
-  background: var(--primary); border: 0.5px solid var(--border); border-radius: 10px;
-  padding: 12px 14px; cursor: pointer; transition: border-color 0.15s;
-}
+.task { background: var(--primary); border: 0.5px solid var(--border); border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: border-color 0.15s; }
 .task:active { background: var(--bg2); }
 .task.done { opacity: 0.55; }
 .task.over { border-right: 3px solid var(--danger); }
@@ -113,14 +94,22 @@ input:focus, select:focus, textarea:focus { outline: 1.5px solid var(--info); ou
 .pf { height: 100%; background: var(--info); transition: width 0.2s; }
 .empty { text-align: center; padding: 2rem; color: var(--text2); font-size: 14px; }
 .loading { text-align: center; padding: 2rem; color: var(--text2); }
-
-/* Modal */
-.modal-bg {
-  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-  align-items: flex-start; justify-content: center; padding: 1rem; z-index: 100; overflow-y: auto;
-}
+.task-files { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.file-link { display: inline-flex; align-items: center; gap: 4px; background: var(--bg2); color: var(--info); padding: 3px 10px; border-radius: 6px; font-size: 12px; text-decoration: none; border: 0.5px solid var(--border); }
+.file-link:hover { background: var(--info-bg); }
+.files-section { border: 0.5px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; background: var(--bg); }
+.files-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+.file-row { display: flex; align-items: center; gap: 6px; background: var(--primary); border: 0.5px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+.file-row .file-icon { font-size: 18px; flex-shrink: 0; }
+.file-row .file-name { flex: 1; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-row a { color: var(--info); text-decoration: none; font-size: 13px; }
+.file-add-row { display: grid; grid-template-columns: 1fr 1.5fr auto; gap: 6px; }
+.file-add-row input { font-size: 13px; padding: 6px 10px; }
+.file-help { background: var(--info-bg); color: #0C447C; border-radius: 6px; padding: 8px 10px; font-size: 12px; margin-top: 8px; line-height: 1.5; }
+.file-help b { font-weight: 600; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: flex-start; justify-content: center; padding: 1rem; z-index: 100; overflow-y: auto; }
 .modal-bg.show { display: flex; }
-.modal { background: var(--primary); border-radius: 12px; padding: 1.25rem; width: 100%; max-width: 560px; margin: auto 0; }
+.modal { background: var(--primary); border-radius: 12px; padding: 1.25rem; width: 100%; max-width: 600px; margin: auto 0; }
 .modal h3 { margin: 0 0 1rem; font-size: 18px; font-weight: 500; }
 .field { margin-bottom: 12px; }
 .field label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 4px; }
@@ -129,20 +118,18 @@ input:focus, select:focus, textarea:focus { outline: 1.5px solid var(--info); ou
 .modal-actions .right { display: flex; gap: 8px; margin-right: auto; }
 input[type="checkbox"] { width: auto; margin-left: 8px; cursor: pointer; transform: scale(1.2); }
 input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
-
-/* Mobile adjustments */
 @media (max-width: 600px) {
   .app { padding: 0.75rem; }
   h1 { font-size: 20px; }
   .stat-val { font-size: 18px; }
   .stats { grid-template-columns: repeat(3, 1fr); }
   .modal { padding: 1rem; }
+  .file-add-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- Login Screen -->
 <div id="login" class="login-bg">
   <div class="login-box">
     <div class="login-icon">📋</div>
@@ -154,9 +141,7 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
   </div>
 </div>
 
-<!-- Main App -->
 <div class="app" id="app" style="display:none;">
-
 <div class="header">
   <h1>📋 משימות</h1>
   <div class="sync-status">
@@ -164,7 +149,6 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
     <span id="sync-text">מסונכרן</span>
   </div>
 </div>
-
 <div class="stats">
   <div class="stat"><div class="stat-label">סה"כ</div><div class="stat-val" id="s-total">0</div></div>
   <div class="stat"><div class="stat-label">פעילות</div><div class="stat-val" id="s-active">0</div></div>
@@ -172,13 +156,11 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
   <div class="stat"><div class="stat-label">השבוע</div><div class="stat-val" id="s-week" style="color:var(--warn);">0</div></div>
   <div class="stat"><div class="stat-label">הושלמו</div><div class="stat-val" id="s-done" style="color:var(--success);">0</div></div>
 </div>
-
 <div class="toolbar">
   <button id="b-add" class="btn-primary">+ משימה</button>
   <input type="text" id="search" placeholder="חיפוש..." />
   <button id="b-exp">ייצוא CSV</button>
 </div>
-
 <div class="filters">
   <select id="fl"><option value="all">כל המיקומים</option></select>
   <select id="fsl"><option value="all">כל הנקודתיים</option></select>
@@ -197,14 +179,11 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
     <option value="גורם חיצוני">גורם חיצוני</option>
   </select>
 </div>
-
 <div id="list" class="list"></div>
 <div id="loading" class="loading">טוען נתונים...</div>
 <div id="empty" class="empty" style="display:none;">אין משימות שתואמות את הסינון</div>
-
 </div>
 
-<!-- Task Modal -->
 <div id="modal-bg" class="modal-bg">
   <div class="modal">
     <h3 id="modal-title">משימה חדשה</h3>
@@ -237,7 +216,26 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
       <input type="range" id="fpro" min="0" max="100" step="5" value="0" />
     </div>
     <div class="field"><label>תגיות (מופרדות בפסיק)</label><input type="text" id="ftg" /></div>
-    <div class="field"><label>קישור / איש קשר</label><input type="text" id="flk" /></div>
+    <div class="field"><label>איש קשר</label><input type="text" id="flk" /></div>
+
+    <div class="field">
+      <label>📎 קבצים מצורפים</label>
+      <div class="files-section">
+        <div id="files-list" class="files-list"></div>
+        <div class="file-add-row">
+          <input type="text" id="file-name" placeholder="שם הקובץ (למשל: חוזה גרסה 3)" />
+          <input type="url" id="file-url" placeholder="הדבק כאן את הקישור מ-OneDrive" />
+          <button type="button" id="b-add-file" class="btn-secondary">+ הוסף</button>
+        </div>
+        <div class="file-help">
+          💡 <b>איך מקבלים קישור מ-OneDrive:</b><br>
+          1. ב-OneDrive (אתר או אפליקציה) - לחץ על הקובץ<br>
+          2. בחר <b>"שתף"</b> → <b>"העתק קישור"</b><br>
+          3. הדבק את הקישור כאן ותן לו שם תיאורי
+        </div>
+      </div>
+    </div>
+
     <div class="modal-actions">
       <button id="b-del" class="btn-danger" style="display:none;">מחיקה</button>
       <div class="right">
@@ -248,14 +246,10 @@ input[type="range"] { width: 100%; appearance: auto; -webkit-appearance: auto; }
   </div>
 </div>
 
-<!-- Firebase + App Logic -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getFirestore, collection, doc, onSnapshot, setDoc, deleteDoc, writeBatch
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getFirestore, collection, doc, onSnapshot, setDoc, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-// === Firebase Config ===
 const firebaseConfig = {
   apiKey: "AIzaSyCYcnwVoWzPsFZfLRyQ155VUi04d57_66U",
   authDomain: "my-task-management-1f53b.firebaseapp.com",
@@ -264,74 +258,39 @@ const firebaseConfig = {
   messagingSenderId: "669039642823",
   appId: "1:669039642823:web:0e0669910d24c02c2056e2"
 };
-
-// === Password ===
 const PASSWORD = "Agam2023";
 
-// === App State ===
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const tasksCol = collection(db, "tasks");
 
 let T = [];
 let ed = null;
-let unsubscribe = null;
+let editingFiles = [];
 
-// === Constants ===
 const SL = {todo:'לעשות',in_progress:'בתהליך',waiting:'ממתין',done:'הושלם'};
 const PL = {low:'נמוכה',medium:'בינונית',high:'גבוהה',urgent:'דחוף'};
 const SC = {todo:['#F1EFE8','#444441'],in_progress:['#E6F1FB','#0C447C'],waiting:['#FAEEDA','#633806'],done:['#EAF3DE','#27500A']};
 const PC = {low:['#F1EFE8','#5F5E5A'],medium:['#E6F1FB','#185FA5'],high:['#FAEEDA','#854F0B'],urgent:['#FCEBEB','#A32D2D']};
 const LC = {'חנתון':['#E1F5EE','#085041'],'הרדוף':['#EEEDFE','#3C3489']};
 
-// === Initial Seed Tasks ===
-const SEED = [
-  ['בדיקת מגרשים - שיפוע, גישה וחלוקה','אחוז השיפוע במגרשים\nדרכי גישה\nמה הולך לרמ"י ומה לקיבוץ\nמי מפתח את רמ"י','חנתון','','תכנון ופיתוח','high','todo','',''],
-  ['תיאום עם מעיין - יועצת ביטוח','יועצת ביטוח לקיבוץ','חנתון','','יועצים','medium','todo','מעיין',''],
-  ['איש קשר - מכיר את המועצה ורמ"י','חבר מחירה ומליאת יזרעאלים\nמכיר את ועדת התכנון המחוזית\nעובד צמוד מול אנשי רמ"י','חנתון','','תכנון ופיתוח','high','todo','',''],
-  ['בירור הנה"ח, מזכירה, מנהלת קהילה','הנה"ח - כמה ימים?\nמזכירה?\nמנהלת קהילה?','חנתון','','ארגוני','medium','todo','',''],
-  ['מיפוי מערכת הקיבוץ - מקיף','תקציב, תזרים, חשבונות בנק\nאנשי קשר, עורכי דין\nתשתיות: מים, חשמל, ביוב, כבישים, תקשורת\nשטפויות, סולארי, רפת, חקלאות\nמפעל, חוזים, המייד, מכינה\nמגורים זמניים','חנתון','','מיפוי','high','in_progress','',''],
-  ['מיפוי הנהלות, ישיבות וצוות','הנהלות וישיבות\nמנהלת קהילה\nהנהלת חשבונות\nמזכירה\nאנשי תחזוקה','חנתון','','מיפוי','medium','todo','',''],
-  ['הודעה לקהילה - הלוואות ומשימות','להפיץ:\n- הודעה לקהילה\n- הלוואות\n- רשימת משימות\nערוצים: וואטסאפ, מייל','חנתון','','תקשורת קהילה','high','todo','',''],
-  ['הפצת מודעת מיזמתון 4','45,000 ש"ח לפיתוח\n25-26 ביוני\nהרשמה: https://wkf.ms/4dNrbZp\nחן 054-882-2343\n** סגירה 30.04 **','חנתון','','תקשורת קהילה','urgent','todo','https://wkf.ms/4dNrbZp','2026-04-30'],
-  ['פגישה - שגיא סרבל (עו"ד)','יום ראשון\nיכין החוזה\nלתאם פגישת היכרות','חנתון','','פגישות','high','todo','שגיא סרבל',''],
-  ['פגישה - אורטל רימר','יום שני','חנתון','','פגישות','medium','todo','אורטל רימר',''],
-  ['פגישה - תמר תבע','יום שני','חנתון','','פגישות','medium','todo','תמר תבע',''],
-  ['תיאום פגישה - טלי','טלי - קהילה, אחראית תקציב הקהילה','חנתון','','פגישות','medium','todo','טלי',''],
-  ['הצעת מחיר חנתון - 55 יח"ד','55 יח"ד כולל ממ"ד\n2 חדרי שינה, סלון, מקלחת, מטבח\nפרגולה/דק\nחיבור לתשתיות מקצה לקצה\nלא כולל תכנון ורשויות\nמינימום 10 יחידות\nמודולרי: עד 10/20/והלאה','חנתון','יחידות דיור','הצעות מחיר','high','todo','',''],
-  ['חנתון - תכנון 35 יח"ד','סביב ה-35 יח"ד\nפרגולה/דק מחוץ לתחשיב','חנתון','יחידות דיור','הצעות מחיר','medium','todo','',''],
-  ['הצעה מאלי סלונס','לקבל ולבחון','חנתון','','הצעות מחיר','medium','waiting','אלי סלונס',''],
-  ['מיפוי תקציבים - 3 ערוצים','טלי (קהילה)\nגלעד-ניר (ועד)\nקיבוץ','חנתון','','פיננסים','high','todo','',''],
-  ['מיפוי הכנסות - חברים ושוכרים','מס חברים\nתושבים שוכרים\nתקציב חינוך','חנתון','','פיננסים','medium','todo','',''],
-  ['מסמכי פיננסים - דוחות וחתימות','דוחות מס ו-106\nתמחיר\nתקציב\nמורשי חתימה בבנק','חנתון','','פיננסים','high','todo','',''],
-  ['בדיקת חשמל אזור תעשייה','מתח?\nשנאי?','חנתון','אזור תעשייה','תשתיות','medium','todo','',''],
-  ['חוות שרתים','לבדוק נושא','חנתון','אזור תעשייה','תשתיות','low','todo','',''],
-  ['הסדרת שכונת קרוואנים','היתר\nהנדסה\nארנונה\nועד-גינון\nחשמל ומים: מונים\n** אין היתר - הכל דרך הקיבוץ **','חנתון','שכונת קרוואנים','קרוואנים','high','todo','',''],
-  ['סדר במונים - קרוואנים','מישהו אוסף ולא מחייב\nטבלת מונים\nלבחון מחירים','חנתון','שכונת קרוואנים','קרוואנים','high','todo','',''],
-  ['דיון עם ארנון - קרוואנים חדשים','ארנון מעוניין להתקדם','חנתון','שכונת קרוואנים','קרוואנים','high','todo','ארנון',''],
-  ['מענה למתווה וילאר','3 מיליון מענקים\n10% או 600 בשנה מהפעלה הגבוה\nללא התחייבויות נוספות','חנתון','','וילאר','high','in_progress','',''],
-  ['ריכוז עם עומר - רפת, לולים, שוכרים','עומר אחראי:\n- רפת\n- לולים (טלפון עבד)\n- אנשי קשר: משקי, וילאר, כפר מכבי, אבוקדו\n- רשימות שוכרים','חנתון','','ענפי משק','high','todo','עומר',''],
-  ['פינוי פסולת - סטודיו כרמל ויפתח','חדר מערבי במבנה משרדים\nפסולת מספטמבר 2025\nבקשות חוזרות לעומר ללא מענה','חנתון','מבנה משרדים','שוכרים','urgent','todo','כרמל אביבי + יפתח','2026-05-06']
-];
-
-function mkSeed(s, i) {
-  return {
-    id: 't_seed_' + i,
-    title: s[0], notes: s[1], location: s[2], sublocation: s[3],
-    project: s[4], priority: s[5], status: s[6],
-    link: s[7] || '', due: s[8] || '',
-    assignee: 'אסף', progress: 0, reminder: 1, tags: [],
-    created: new Date().toISOString().slice(0, 10)
-  };
+function fileIcon(url, name) {
+  const s = ((name || '') + ' ' + (url || '')).toLowerCase();
+  if (s.match(/\.(doc|docx)/)) return '📄';
+  if (s.match(/\.(xls|xlsx|csv)/)) return '📊';
+  if (s.match(/\.(ppt|pptx)/)) return '📽️';
+  if (s.match(/\.(pdf)/)) return '📕';
+  if (s.match(/\.(jpg|jpeg|png|gif|bmp|webp|svg)/)) return '🖼️';
+  if (s.match(/\.(mp4|avi|mov|mkv|webm)/)) return '🎬';
+  if (s.match(/\.(mp3|wav|ogg|m4a)/)) return '🎵';
+  if (s.match(/\.(zip|rar|7z|tar)/)) return '📦';
+  if (s.match(/\.(txt|rtf)/)) return '📃';
+  return '📎';
 }
 
-// === Auth ===
 function checkLogin() {
   const saved = sessionStorage.getItem('logged_in');
-  if (saved === 'yes') {
-    showApp();
-    return;
-  }
+  if (saved === 'yes') { showApp(); return; }
   document.getElementById('login-input').focus();
 }
 
@@ -354,41 +313,35 @@ function showApp() {
 }
 
 document.getElementById('login-btn').addEventListener('click', attemptLogin);
-document.getElementById('login-input').addEventListener('keypress', e => {
-  if (e.key === 'Enter') attemptLogin();
-});
+document.getElementById('login-input').addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
 
-// === Sync Status ===
 function setSyncStatus(state, text) {
-  const dot = document.getElementById('sync-dot');
-  dot.className = 'sync-dot ' + state;
+  document.getElementById('sync-dot').className = 'sync-dot ' + state;
   document.getElementById('sync-text').textContent = text;
 }
 
 window.addEventListener('online', () => setSyncStatus('', 'מסונכרן'));
 window.addEventListener('offline', () => setSyncStatus('offline', 'לא מקוון'));
 
-// === Firebase Sync ===
 async function startSync() {
   setSyncStatus('syncing', 'מסנכרן...');
   try {
-    unsubscribe = onSnapshot(tasksCol, async (snapshot) => {
+    onSnapshot(tasksCol, (snapshot) => {
       const docs = [];
-      snapshot.forEach(d => docs.push({ ...d.data(), id: d.id }));
-
-      // Seed if empty
-      if (docs.length === 0 && !sessionStorage.getItem('seeded')) {
-        sessionStorage.setItem('seeded', 'yes');
-        setSyncStatus('syncing', 'מאתחל נתונים...');
-        const batch = writeBatch(db);
-        SEED.forEach((s, i) => {
-          const t = mkSeed(s, i);
-          batch.set(doc(tasksCol, t.id), t);
-        });
-        await batch.commit();
-        return;
-      }
-
+      snapshot.forEach(d => {
+        const data = d.data();
+        // Migration: handle old 'link' field
+        if (data.link && (!data.files || data.files.length === 0)) {
+          if (data.link.startsWith('http')) {
+            data.files = [{ name: 'קישור', url: data.link }];
+          } else {
+            data.contact = data.link;
+            data.files = [];
+          }
+        }
+        if (!data.files) data.files = [];
+        docs.push({ ...data, id: d.id });
+      });
       T = docs;
       document.getElementById('loading').style.display = 'none';
       setSyncStatus('', navigator.onLine ? 'מסונכרן' : 'לא מקוון');
@@ -425,7 +378,6 @@ async function deleteTaskDoc(id) {
   }
 }
 
-// === Helpers ===
 function td() { return new Date().toISOString().slice(0, 10); }
 function db2(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 function ov(t) { return t.due && t.status !== 'done' && t.due < td(); }
@@ -464,12 +416,21 @@ function renderTask(t) {
   }
 
   const tg = (t.tags || []).map(x => `<span class="badge" style="background:var(--bg3);color:var(--text2);">#${esc(x)}</span>`).join('');
-  const lh = t.link ? `<span style="color:var(--info);">📎 ${esc(t.link)}</span>` : '';
+  const ch = t.contact ? `<span style="color:var(--text2);">👤 ${esc(t.contact)}</span>` : '';
   const ph = t.progress > 0 && t.status !== 'done' ? `<div class="pb"><div class="pf" style="width:${t.progress}%;"></div></div>` : '';
 
   let lo = '';
   if (t.location) {
     lo = `<span class="badge" style="background:${lc[0]};color:${lc[1]};font-weight:500;">📍 ${esc(t.location)}${t.sublocation ? ' › ' + esc(t.sublocation) : ''}</span>`;
+  }
+
+  let filesHtml = '';
+  if (t.files && t.files.length > 0) {
+    filesHtml = '<div class="task-files">' +
+      t.files.map(f => {
+        const icon = fileIcon(f.url, f.name);
+        return `<a href="${esc(f.url)}" target="_blank" rel="noopener" class="file-link" onclick="event.stopPropagation()">${icon} ${esc(f.name || 'קובץ')}</a>`;
+      }).join('') + '</div>';
   }
 
   return `<div class="${cls}" data-id="${t.id}">
@@ -487,10 +448,12 @@ function renderTask(t) {
         <div class="task-meta">
           <span>${esc(t.assignee || 'אסף')}</span>
           ${dh}
-          ${lh}
+          ${ch}
           ${t.progress > 0 && t.status !== 'done' ? `<span>${t.progress}%</span>` : ''}
+          ${t.files && t.files.length > 0 ? `<span style="color:var(--info);">📎 ${t.files.length} קבצים</span>` : ''}
         </div>
         ${t.notes ? `<div class="task-notes">${esc(t.notes)}</div>` : ''}
+        ${filesHtml}
         ${ph}
       </div>
     </div>
@@ -520,7 +483,6 @@ function render() {
   fp.innerHTML = '<option value="all">כל הפרויקטים</option>' + prs.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('');
   fp.value = cp || 'all';
 
-  // Datalists
   document.getElementById('loc-list').innerHTML = locs.map(l => `<option value="${esc(l)}">`).join('');
   const allSubs = [...new Set(T.map(t => t.sublocation).filter(Boolean))].sort();
   document.getElementById('sloc-list').innerHTML = allSubs.map(l => `<option value="${esc(l)}">`).join('');
@@ -537,7 +499,8 @@ function render() {
     if (fp.value !== 'all' && t.project !== fp.value) return false;
     if (fa !== 'all' && t.assignee !== fa) return false;
     if (q) {
-      const h = (t.title + ' ' + (t.notes || '') + ' ' + (t.tags || []).join(' ') + ' ' + (t.project || '') + ' ' + (t.location || '') + ' ' + (t.sublocation || '') + ' ' + (t.link || '')).toLowerCase();
+      const fileNames = (t.files || []).map(f => f.name || '').join(' ');
+      const h = (t.title + ' ' + (t.notes || '') + ' ' + (t.tags || []).join(' ') + ' ' + (t.project || '') + ' ' + (t.location || '') + ' ' + (t.sublocation || '') + ' ' + (t.contact || '') + ' ' + fileNames).toLowerCase();
       if (!h.includes(q)) return false;
     }
     return true;
@@ -573,8 +536,44 @@ async function toggleDone(id) {
   await saveTask(updated);
 }
 
+function renderFilesList() {
+  const list = document.getElementById('files-list');
+  if (editingFiles.length === 0) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">אין קבצים מצורפים</div>';
+    return;
+  }
+  list.innerHTML = editingFiles.map((f, i) => {
+    const icon = fileIcon(f.url, f.name);
+    return `<div class="file-row">
+      <span class="file-icon">${icon}</span>
+      <span class="file-name">${esc(f.name || 'קובץ')}</span>
+      <a href="${esc(f.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">פתח</a>
+      <button type="button" class="btn-icon" data-idx="${i}">✕</button>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.btn-icon').forEach(b => {
+    b.addEventListener('click', () => {
+      editingFiles.splice(parseInt(b.dataset.idx), 1);
+      renderFilesList();
+    });
+  });
+}
+
+function addFileFromForm() {
+  const name = document.getElementById('file-name').value.trim();
+  const url = document.getElementById('file-url').value.trim();
+  if (!url) { alert('נא הדבק קישור לקובץ'); return; }
+  if (!url.startsWith('http')) { alert('הקישור חייב להתחיל ב-http או https'); return; }
+  editingFiles.push({ name: name || 'קובץ ' + (editingFiles.length + 1), url });
+  document.getElementById('file-name').value = '';
+  document.getElementById('file-url').value = '';
+  renderFilesList();
+  document.getElementById('file-name').focus();
+}
+
 function openModal(t) {
   ed = t ? t.id : null;
+  editingFiles = t && t.files ? JSON.parse(JSON.stringify(t.files)) : [];
   document.getElementById('modal-title').textContent = t ? 'עריכת משימה' : 'משימה חדשה';
   document.getElementById('ft').value = t?.title || '';
   document.getElementById('fn').value = t?.notes || '';
@@ -589,7 +588,10 @@ function openModal(t) {
   document.getElementById('fpro').value = t?.progress || 0;
   document.getElementById('fpo').textContent = t?.progress || 0;
   document.getElementById('ftg').value = (t?.tags || []).join(', ');
-  document.getElementById('flk').value = t?.link || '';
+  document.getElementById('flk').value = t?.contact || '';
+  document.getElementById('file-name').value = '';
+  document.getElementById('file-url').value = '';
+  renderFilesList();
   document.getElementById('b-del').style.display = t ? 'inline-block' : 'none';
   document.getElementById('modal-bg').classList.add('show');
 }
@@ -602,11 +604,19 @@ function openEdit(id) {
 function closeModal() {
   document.getElementById('modal-bg').classList.remove('show');
   ed = null;
+  editingFiles = [];
 }
 
 async function saveForm() {
   const ti = document.getElementById('ft').value.trim();
   if (!ti) { alert('נא הזן כותרת'); return; }
+
+  const pendingUrl = document.getElementById('file-url').value.trim();
+  if (pendingUrl && pendingUrl.startsWith('http')) {
+    const pendingName = document.getElementById('file-name').value.trim();
+    editingFiles.push({ name: pendingName || 'קובץ ' + (editingFiles.length + 1), url: pendingUrl });
+  }
+
   const d = {
     title: ti,
     notes: document.getElementById('fn').value,
@@ -620,13 +630,15 @@ async function saveForm() {
     reminder: parseInt(document.getElementById('frem').value) || 0,
     progress: parseInt(document.getElementById('fpro').value) || 0,
     tags: document.getElementById('ftg').value.split(',').map(s => s.trim()).filter(Boolean),
-    link: document.getElementById('flk').value.trim()
+    contact: document.getElementById('flk').value.trim(),
+    files: editingFiles
   };
   if (d.status === 'done') d.progress = 100;
   let task;
   if (ed) {
     const existing = T.find(t => t.id === ed);
     task = { ...existing, ...d };
+    delete task.link;
   } else {
     task = {
       id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
@@ -647,14 +659,16 @@ async function delTask() {
 
 function exportCsv() {
   if (T.length === 0) { alert('אין משימות'); return; }
-  const h = ['כותרת','מיקום פרויקט','מיקום נקודתי','פרויקט','משויך ל','סטטוס','דחיפות','תאריך יעד','התקדמות','תגיות','הערות','קישור','נוצר'];
+  const h = ['כותרת','מיקום פרויקט','מיקום נקודתי','פרויקט','משויך ל','סטטוס','דחיפות','תאריך יעד','התקדמות','תגיות','הערות','איש קשר','קבצים','נוצר'];
   const r = T.map(t => [
     t.title, t.location || '', t.sublocation || '', t.project || '', t.assignee || '',
     SL[t.status] || t.status, PL[t.priority] || t.priority,
     t.due || '', (t.progress || 0) + '%',
     (t.tags || []).join('; '),
     (t.notes || '').replace(/\n/g, ' | '),
-    t.link || '', t.created || ''
+    t.contact || '',
+    (t.files || []).map(f => `${f.name}: ${f.url}`).join(' | '),
+    t.created || ''
   ]);
   const c = '\uFEFF' + [h, ...r].map(x => x.map(y => `"${String(y).replace(/"/g, '""')}"`).join(',')).join('\n');
   const bl = new Blob([c], {type: 'text/csv;charset=utf-8'});
@@ -664,12 +678,13 @@ function exportCsv() {
   URL.revokeObjectURL(u);
 }
 
-// Event listeners
 document.getElementById('b-add').addEventListener('click', () => openModal(null));
 document.getElementById('b-cn').addEventListener('click', closeModal);
 document.getElementById('b-sv').addEventListener('click', saveForm);
 document.getElementById('b-del').addEventListener('click', delTask);
 document.getElementById('b-exp').addEventListener('click', exportCsv);
+document.getElementById('b-add-file').addEventListener('click', addFileFromForm);
+document.getElementById('file-url').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); addFileFromForm(); } });
 document.getElementById('search').addEventListener('input', render);
 document.getElementById('fs').addEventListener('change', render);
 document.getElementById('fl').addEventListener('change', render);
@@ -679,7 +694,6 @@ document.getElementById('fa').addEventListener('change', render);
 document.getElementById('fpro').addEventListener('input', e => { document.getElementById('fpo').textContent = e.target.value; });
 document.getElementById('modal-bg').addEventListener('click', e => { if (e.target.id === 'modal-bg') closeModal(); });
 
-// Start
 checkLogin();
 </script>
 
