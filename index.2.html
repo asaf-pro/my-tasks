@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>📋 דשבורד משימות</title>
+<meta name="theme-color" content="#185FA5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="משימות">
+<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%D7%93%D7%A9%D7%91%D7%95%D7%A8%D7%93%20%D7%9E%D7%A9%D7%99%D7%9E%D7%95%D7%AA%22%2C%22short_name%22%3A%22%D7%9E%D7%A9%D7%99%D7%9E%D7%95%D7%AA%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23FAF9F5%22%2C%22theme_color%22%3A%22%23185FA5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzE4NUZBNSIgcng9IjQwIi8+PHRleHQgeD0iMTAwIiB5PSIxMzUiIGZvbnQtc2l6ZT0iMTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5OLPC90ZXh0Pjwvc3ZnPg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzE4NUZBNSIgcng9IjQwIi8+PHRleHQgeD0iMTAwIiB5PSIxMzUiIGZvbnQtc2l6ZT0iMTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5OLPC90ZXh0Pjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzE4NUZBNSIgcng9IjQwIi8+PHRleHQgeD0iMTAwIiB5PSIxMzUiIGZvbnQtc2l6ZT0iMTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5OLPC90ZXh0Pjwvc3ZnPg==">
+<style>
+:root { --bg:#FAF9F5; --bg2:#F1EFE8; --bg3:#E8E6DC; --primary:#FFFFFF; --text:#1F1E1B; --text2:#5F5E5A; --border:#DEDCD3; --info:#185FA5; --info-bg:#E6F1FB; --danger:#A32D2D; --warn:#854F0B; --success:#27500A; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Heebo', 'Arial Hebrew', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+.app { padding: 1rem; max-width: 1200px; margin: 0 auto; }
+.login-bg { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
+.login-box { width: 100%; max-width: 360px; text-align: center; }
+.login-icon { font-size: 64px; margin-bottom: 1rem; }
+.login-title { font-size: 24px; font-weight: 500; margin: 0 0 0.5rem; }
+.login-subtitle { color: var(--text2); font-size: 14px; margin-bottom: 1.5rem; }
+.login-input { width: 100%; padding: 14px; font-size: 16px; border-radius: 10px; border: 0.5px solid var(--border); margin-bottom: 12px; text-align: center; letter-spacing: 2px; }
+.login-btn { width: 100%; padding: 14px; background: var(--info); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 500; cursor: pointer; }
+.login-error { color: var(--danger); font-size: 13px; margin-top: 8px; min-height: 18px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 8px; }
+h1 { font-size: 22px; font-weight: 500; margin: 0; }
+.sync-status { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+.sync-dot.offline { background: var(--warn); }
+.sync-dot.error { background: var(--danger); }
+.sync-dot.syncing { background: var(--info); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 1rem; }
+.stat { background: var(--bg2); border-radius: 10px; padding: 0.75rem 1rem; }
+.stat-label { font-size: 12px; color: var(--text2); margin-bottom: 2px; }
+.stat-val { font-size: 22px; font-weight: 500; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+button, input, select, textarea { font-family: inherit; font-size: 14px; padding: 8px 12px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--primary); color: var(--text); -webkit-appearance: none; appearance: none; }
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%235F5E5A' d='M6 8L2 4h8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 8px center; padding-left: 24px; }
+button { cursor: pointer; }
+.btn-primary { background: var(--info-bg); color: var(--info); border: none; font-weight: 500; }
+.btn-secondary { background: var(--bg2); color: var(--text); border: none; font-size: 13px; padding: 6px 10px; }
+.btn-danger { color: var(--danger); border-color: #f0c0c0; }
+.btn-success { background: #d4edbc; color: #1e4007; border: 1px solid #a3d176; font-weight: 600; }
+.btn-icon { padding: 4px 8px; font-size: 12px; background: transparent; border: none; color: var(--danger); cursor: pointer; }
+input[type="text"], input[type="date"], input[type="url"], input[type="number"], input[type="password"], textarea, select { width: 100%; }
+#search { flex: 1; min-width: 140px; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+.task { background: var(--primary); border: 0.5px solid var(--border); border-radius: 10px; padding: 12px 14px; cursor: pointer; }
+.task.done { opacity: 0.55; }
+.task.over { border-right: 3px solid var(--danger); }
+.task.urg { border-right: 3px solid var(--danger); }
+.task.hi { border-right: 3px solid var(--warn); }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 4px; }
+.task-row { display: flex; align-items: flex-start; gap: 8px; }
+.task-body { flex: 1; min-width: 0; }
+.task-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 4px; }
+.task-title { font-weight: 500; font-size: 14px; }
+.task-title.done { text-decoration: line-through; }
+.task-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12px; color: var(--text2); }
+.task-notes { font-size: 12px; color: var(--text2); margin-top: 6px; white-space: pre-wrap; }
+.pb { height: 4px; background: var(--bg2); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.pf { height: 100%; background: var(--info); }
+.empty { text-align: center; padding: 2rem; color: var(--text2); font-size: 14px; }
+.loading { text-align: center; padding: 2rem; color: var(--text2); }
+.task-files { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.file-link { display: inline-flex; align-items: center; gap: 4px; background: var(--bg2); color: var(--info); padding: 3px 10px; border-radius: 6px; font-size: 12px; text-decoration: none; border: 0.5px solid var(--border); }
+.task-subtasks { margin-top: 8px; padding: 8px 10px; background: var(--bg); border-radius: 6px; border: 0.5px solid var(--border); }
+.task-subtask { display: flex; align-items: center; gap: 6px; padding: 3px 0; font-size: 13px; }
+.task-subtask input[type="checkbox"] { margin: 0; transform: scale(1); }
+.task-subtask-text { flex: 1; }
+.task-subtask-text.done { text-decoration: line-through; opacity: 0.6; }
+.subtask-progress { font-size: 11px; color: var(--text2); margin-top: 4px; }
+.subtasks-section, .files-section { border: 0.5px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; background: var(--bg); }
+.subtasks-list, .files-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.sub-row, .file-row { display: flex; align-items: center; gap: 6px; background: var(--primary); border: 0.5px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+.sub-row input[type="checkbox"] { margin: 0; transform: scale(1.1); flex-shrink: 0; }
+.sub-row .sub-text { flex: 1; font-size: 13px; border: none; padding: 4px 6px; background: transparent; }
+.sub-row .sub-text.done { text-decoration: line-through; color: var(--text2); }
+.sub-add-row, .file-add-row { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
+.file-add-row { grid-template-columns: 1fr 1.5fr auto; }
+.file-row .file-icon { font-size: 18px; flex-shrink: 0; }
+.file-row .file-name { flex: 1; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-row a { color: var(--info); text-decoration: none; font-size: 13px; }
+.file-help { background: var(--info-bg); color: #0C447C; border-radius: 6px; padding: 8px 10px; font-size: 12px; margin-top: 8px; line-height: 1.5; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: flex-start; justify-content: center; padding: 1rem; z-index: 100; overflow-y: auto; }
+.modal-bg.show { display: flex; }
+.modal { background: var(--primary); border-radius: 12px; padding: 1.25rem; width: 100%; max-width: 600px; margin: auto 0; }
+.modal h3 { margin: 0 0 1rem; font-size: 18px; font-weight: 500; }
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 4px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-actions { display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; }
+.modal-actions .right { display: flex; gap: 8px; margin-right: auto; }
+input[type="checkbox"] { width: auto; margin-left: 8px; transform: scale(1.2); }
+.sync-banner { background: #FFF8E1; border: 1px solid #FFD54F; border-radius: 10px; padding: 12px 16px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.sync-banner.success { background: #E8F5E9; border-color: #81C784; }
+.sync-banner-text { font-size: 13px; flex: 1; }
+.sync-banner-text b { font-weight: 600; }
+@media (max-width: 600px) { .app { padding: 0.75rem; } h1 { font-size: 20px; } .stat-val { font-size: 18px; } .stats { grid-template-columns: repeat(3, 1fr); } .modal { padding: 1rem; } .file-add-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div id="login" class="login-bg">
+  <div class="login-box">
+    <div class="login-icon">📋</div>
+    <h1 class="login-title">דשבורד משימות</h1>
+    <div class="login-subtitle">הזן סיסמה לכניסה</div>
+    <input type="password" id="login-input" class="login-input" placeholder="סיסמה" />
+    <button id="login-btn" class="login-btn">כניסה</button>
+    <div id="login-error" class="login-error"></div>
+  </div>
+</div>
+
+<div class="app" id="app" style="display:none;">
+<div class="header">
+  <h1>📋 משימות</h1>
+  <div class="sync-status">
+    <span class="sync-dot" id="sync-dot"></span>
+    <span id="sync-text">מסונכרן</span>
+  </div>
+</div>
+
+<!-- Sync banner -->
+<div id="sync-banner" class="sync-banner" style="display:none;">
+  <div class="sync-banner-text" id="sync-banner-text">
+    <b>🔄 יש משימות חדשות להוסיף!</b><br>
+    זוהו 18 משימות חדשות + עדכונים למשימות קיימות. לחץ כדי להוסיף.
+  </div>
+  <button id="b-sync-now" class="btn-success">הוסף עכשיו</button>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">סה"כ</div><div class="stat-val" id="s-total">0</div></div>
+  <div class="stat"><div class="stat-label">פעילות</div><div class="stat-val" id="s-active">0</div></div>
+  <div class="stat"><div class="stat-label">באיחור</div><div class="stat-val" id="s-over" style="color:var(--danger);">0</div></div>
+  <div class="stat"><div class="stat-label">השבוע</div><div class="stat-val" id="s-week" style="color:var(--warn);">0</div></div>
+  <div class="stat"><div class="stat-label">הושלמו</div><div class="stat-val" id="s-done" style="color:var(--success);">0</div></div>
+</div>
+<div class="toolbar">
+  <button id="b-add" class="btn-primary">+ משימה</button>
+  <input type="text" id="search" placeholder="חיפוש..." />
+  <button id="b-exp">ייצוא CSV</button>
+</div>
+<div class="filters">
+  <select id="fl"><option value="all">כל המיקומים</option></select>
+  <select id="fsl"><option value="all">כל הנקודתיים</option></select>
+  <select id="fs">
+    <option value="all">כל הסטטוסים</option>
+    <option value="todo">לעשות</option>
+    <option value="in_progress">בתהליך</option>
+    <option value="waiting">ממתין</option>
+    <option value="done">הושלם</option>
+  </select>
+  <select id="fp"><option value="all">כל הפרויקטים</option></select>
+  <select id="fa">
+    <option value="all">כל המשויכים</option>
+    <option value="אסף">אסף</option>
+    <option value="מתיא">מתיא</option>
+    <option value="גורם חיצוני">גורם חיצוני</option>
+  </select>
+</div>
+<div id="list" class="list"></div>
+<div id="loading" class="loading">טוען נתונים...</div>
+<div id="empty" class="empty" style="display:none;">אין משימות שתואמות את הסינון</div>
+</div>
+
+<div id="modal-bg" class="modal-bg">
+  <div class="modal">
+    <h3 id="modal-title">משימה חדשה</h3>
+    <div class="field"><label>כותרת</label><input type="text" id="ft" /></div>
+    <div class="field"><label>תיאור / הערות</label><textarea id="fn" rows="3"></textarea></div>
+    <div class="row2">
+      <div class="field"><label>מיקום פרויקט</label><input type="text" id="floc" list="loc-list" /><datalist id="loc-list"></datalist></div>
+      <div class="field"><label>מיקום נקודתי</label><input type="text" id="fsloc" list="sloc-list" /><datalist id="sloc-list"></datalist></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>פרויקט</label><input type="text" id="fpr" list="pr-list" /><datalist id="pr-list"></datalist></div>
+      <div class="field"><label>משויך ל</label>
+        <select id="fas"><option>אסף</option><option>מתיא</option><option>גורם חיצוני</option></select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>דחיפות</label>
+        <select id="fpri"><option value="low">נמוכה</option><option value="medium" selected>בינונית</option><option value="high">גבוהה</option><option value="urgent">דחוף</option></select>
+      </div>
+      <div class="field"><label>סטטוס</label>
+        <select id="fst"><option value="todo">לעשות</option><option value="in_progress">בתהליך</option><option value="waiting">ממתין</option><option value="done">הושלם</option></select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>תאריך יעד</label><input type="date" id="fd" /></div>
+      <div class="field"><label>תזכורת (ימים)</label><input type="number" id="frem" min="0" max="30" value="1" /></div>
+    </div>
+    <div class="field">
+      <label>התקדמות: <span id="fpo">0</span>% <span id="auto-progress" style="font-size:11px;color:var(--info);"></span></label>
+      <input type="range" id="fpro" min="0" max="100" step="5" value="0" />
+    </div>
+    <div class="field"><label>תגיות (מופרדות בפסיק)</label><input type="text" id="ftg" /></div>
+    <div class="field"><label>איש קשר</label><input type="text" id="flk" /></div>
+    <div class="field">
+      <label>✅ תת-משימות / צ'קליסט</label>
+      <div class="subtasks-section">
+        <div id="subtasks-list" class="subtasks-list"></div>
+        <div class="sub-add-row">
+          <input type="text" id="sub-input" placeholder="הוסף תת-משימה..." />
+          <button type="button" id="b-add-sub" class="btn-secondary">+ הוסף</button>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>📎 קבצים מצורפים</label>
+      <div class="files-section">
+        <div id="files-list" class="files-list"></div>
+        <div class="file-add-row">
+          <input type="text" id="file-name" placeholder="שם הקובץ" />
+          <input type="url" id="file-url" placeholder="קישור OneDrive" />
+          <button type="button" id="b-add-file" class="btn-secondary">+ הוסף</button>
+        </div>
+        <div class="file-help">💡 <b>OneDrive:</b> לחץ ימני → "שתף" → "העתק קישור" → הדבק</div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="b-del" class="btn-danger" style="display:none;">מחיקה</button>
+      <div class="right">
+        <button id="b-cn">ביטול</button>
+        <button id="b-sv" class="btn-primary">שמירה</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, collection, doc, onSnapshot, setDoc, deleteDoc, writeBatch, getDocs } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCYcnwVoWzPsFZfLRyQ155VUi04d57_66U",
+  authDomain: "my-task-management-1f53b.firebaseapp.com",
+  projectId: "my-task-management-1f53b",
+  storageBucket: "my-task-management-1f53b.firebasestorage.app",
+  messagingSenderId: "669039642823",
+  appId: "1:669039642823:web:0e0669910d24c02c2056e2"
+};
+const PASSWORD = "Agam2023";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const tasksCol = collection(db, "tasks");
+
+let T = [];
+let ed = null;
+let editingFiles = [];
+let editingSubs = [];
+
+const SL = {todo:'לעשות',in_progress:'בתהליך',waiting:'ממתין',done:'הושלם'};
+const PL = {low:'נמוכה',medium:'בינונית',high:'גבוהה',urgent:'דחוף'};
+const SC = {todo:['#F1EFE8','#444441'],in_progress:['#E6F1FB','#0C447C'],waiting:['#FAEEDA','#633806'],done:['#EAF3DE','#27500A']};
+const PC = {low:['#F1EFE8','#5F5E5A'],medium:['#E6F1FB','#185FA5'],high:['#FAEEDA','#854F0B'],urgent:['#FCEBEB','#A32D2D']};
+const LC = {'חנתון':['#E1F5EE','#085041'],'הרדוף':['#EEEDFE','#3C3489']};
+
+function fileIcon(url, name) {
+  const s = ((name || '') + ' ' + (url || '')).toLowerCase();
+  if (s.match(/\.(doc|docx)/)) return '📄';
+  if (s.match(/\.(xls|xlsx|csv)/)) return '📊';
+  if (s.match(/\.(ppt|pptx)/)) return '📽️';
+  if (s.match(/\.(pdf)/)) return '📕';
+  if (s.match(/\.(jpg|jpeg|png|gif)/)) return '🖼️';
+  return '📎';
+}
+
+// === Tasks to add ===
+const NEW_TASKS = [
+  { title: 'כנס הנהלה כלכלית', notes: 'יום שני בעוד שבועיים', location: 'חנתון', project: 'הנהלה עסקית', priority: 'high', status: 'todo', due: '2026-05-18', subs: [{text:'הכנת חומרים',done:false},{text:'סדר יום',done:false}] },
+  { title: 'הנהלה עסקית - מיפוי תחומים', notes: 'מיפוי תחומי פעילות תחת ההנהלה העסקית', location: 'חנתון', project: 'הנהלה עסקית', priority: 'high', status: 'todo', subs: [{text:'תיירות',done:false},{text:'דוחות',done:false},{text:'אזור תעשייה',done:false}] },
+  { title: 'בחינת עלויות הנה"ח', location: 'חנתון', project: 'פיננסים', priority: 'medium', status: 'todo' },
+  { title: 'העלאת שכ"ד יקב', location: 'חנתון', project: 'פיננסים', priority: 'high', status: 'todo' },
+  { title: 'אסיפה - תהליך אזור תעשייה', notes: 'לקבוע אסיפה כללית על התעשייה', location: 'חנתון', sublocation: 'אזור תעשייה', project: 'אזור תעשייה', priority: 'high', status: 'todo', subs: [{text:'להראות תהליך שנעשה ב-2022',done:false},{text:'להציג שההנהלה העסקית מסתדרת',done:false},{text:'להבטיח עדכון באסיפה הבאה',done:false}] },
+  { title: 'הגדרות תפקיד ועדת תכנון', notes: 'חברות בוועדה: רק חברי אגודה', location: 'חנתון', project: 'תכנון ופיתוח', priority: 'high', status: 'todo', subs: [{text:'להכין ולשלוח טיוטה',done:false},{text:'קבלת תיקונים',done:false},{text:'אישור בוועד/מזכירות',done:false}] },
+  { title: 'גינון שכונת הבוסתן', notes: 'גלעד ואסף - אחראים', location: 'חנתון', sublocation: 'שכונת הבוסתן', project: 'תשתיות', priority: 'medium', status: 'todo', contact: 'גלעד', subs: [{text:'הבנת עלויות גינון',done:false},{text:'העברת כסף לקיבוץ',done:false},{text:'אישור הוועד',done:false}] },
+  { title: 'שכונה חדשה - קשר עם דור', notes: 'אסף בקשר עם דור', location: 'חנתון', sublocation: 'שכונה חדשה', project: 'תכנון ופיתוח', priority: 'high', status: 'todo', contact: 'דור' },
+  { title: 'פיקוח תכנון מפורט - מועצה', notes: 'תקציב: ~100 אש"ח. התחלקות לפי כמות יחידות', location: 'חנתון', project: 'תכנון ופיתוח', priority: 'medium', status: 'todo', subs: [{text:'חלוקה לפי יחידות',done:false},{text:'אישור הוועד',done:false}] },
+  { title: 'גלעד - שיחה עם רמ"י', notes: 'כדאי להמליץ על אנשים לפגישה (אלבז וכדו\')', location: 'חנתון', project: 'תכנון ופיתוח', priority: 'high', status: 'todo', contact: 'גלעד', subs: [{text:'פטור ממכרז',done:false},{text:'עדיפות לבני מקום',done:false},{text:'מילואימניקים',done:false},{text:'המלצה על אנשים (אלבז וכדו\')',done:false}] },
+  { title: 'גיוס/החלפת תפקידים', notes: 'תפקידים פתוחים', location: 'חנתון', project: 'משאבי אנוש', priority: 'high', status: 'todo', subs: [{text:'מזכירה',done:false},{text:'הנה"ח',done:false},{text:'מש"א',done:false}] },
+  { title: 'ישיבה עם אייל סהר - רפת', notes: 'אייל סהר מהרפת', location: 'חנתון', sublocation: 'רפת', project: 'ענפי משק', priority: 'high', status: 'in_progress', contact: 'אייל סהר', subs: [{text:'לתאם פגישת היכרות מחר',done:true},{text:'בשיחה: חידוש חוזה שותפות',done:false},{text:'בשיחה: תחזוקת מערכות סולאריות',done:false}] },
+  { title: 'מי קליטה - שיחה עם רו"ח', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo' },
+  { title: 'תהליך קליטה - צ\'ק ליסט עם ויקי', notes: 'בניית תהליך קליטה מסודר', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'ויקי', subs: [{text:'בניית צ\'ק ליסט',done:false},{text:'הגדרת אחריות',done:false}] },
+  { title: 'טנא - בדיקת התכנות לקליטה', notes: 'טנא - חברה שעושה בדיקה כלכלית לנקלטים. חלק מניהול תהליך הקליטה', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo', contact: 'ויקי', tags: ['טנא'] },
+  { title: 'סמסון - תהליך קליטה מקוצר', notes: 'סמסון - מועמדת ספציפית עם רגישות אחרת, דורשת טיפול אישי. תהליך מקוצר עם דמי קליטה מופחתים', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'ויקי + סמסון', tags: ['סמסון'] },
+  { title: 'שיפוץ קרוואן קטן', location: 'חנתון', sublocation: 'שכונת קרוואנים', project: 'קרוואנים', priority: 'medium', status: 'todo' },
+  { title: 'לקבוע פגישה עם ויטמן', location: 'חנתון', project: 'פגישות', priority: 'medium', status: 'todo', contact: 'ויטמן' }
+];
+
+const TASK_UPDATES = [
+  { matchTitle: 'תיאום פגישה - טלי', addSubs: [{text:'דיון על שכר חודשי - עובדים',done:false}] },
+  { matchTitle: 'הצעה מאלי סלונס', addSubs: [{text:'לקבוע פגישה',done:false}] },
+  { matchTitle: 'ריכוז עם עומר', addSubs: [{text:'שינוי מורשי חתימה',done:false},{text:'הגדלת שכ"ד וחידוש חוזה',done:false}] },
+  { matchTitle: 'מסמכי פיננסים', addSubs: [{text:'מצב תזרים תקציב - דחוף',done:false}] }
+];
+
+function mkNewTask(t, idx) {
+  return {
+    id: 't_new_' + Date.now() + '_' + idx + '_' + Math.random().toString(36).slice(2,6),
+    title: t.title, notes: t.notes || '',
+    location: t.location || '', sublocation: t.sublocation || '',
+    project: t.project || '', priority: t.priority || 'medium',
+    status: t.status || 'todo', due: t.due || '',
+    assignee: t.assignee || 'אסף', progress: 0, reminder: 1,
+    tags: t.tags || [], contact: t.contact || '',
+    files: [], subs: t.subs || [],
+    created: new Date().toISOString().slice(0, 10)
+  };
+}
+
+// Check which tasks/updates are missing
+function findMissing() {
+  const missingNew = [];
+  const missingUpdates = [];
+  
+  NEW_TASKS.forEach(nt => {
+    const found = T.find(t => t.title === nt.title);
+    if (!found) missingNew.push(nt);
+  });
+  
+  TASK_UPDATES.forEach(up => {
+    const found = T.find(t => t.title && t.title.includes(up.matchTitle));
+    if (found) {
+      const existingSubTexts = (found.subs || []).map(s => s.text);
+      const missingSubs = up.addSubs.filter(s => !existingSubTexts.includes(s.text));
+      if (missingSubs.length > 0) {
+        missingUpdates.push({ task: found, addSubs: missingSubs });
+      }
+    }
+  });
+  
+  return { missingNew, missingUpdates };
+}
+
+async function applyMissing() {
+  const banner = document.getElementById('sync-banner');
+  const text = document.getElementById('sync-banner-text');
+  const btn = document.getElementById('b-sync-now');
+  btn.disabled = true;
+  btn.textContent = 'מוסיף...';
+  text.innerHTML = '<b>🔄 מוסיף משימות חדשות...</b>';
+  
+  try {
+    const { missingNew, missingUpdates } = findMissing();
+    const batch = writeBatch(db);
+    
+    missingNew.forEach((t, i) => {
+      const newTask = mkNewTask(t, i);
+      batch.set(doc(tasksCol, newTask.id), newTask);
+    });
+    
+    missingUpdates.forEach(up => {
+      const currentSubs = up.task.subs || [];
+      const newSubs = [...currentSubs, ...up.addSubs];
+      batch.set(doc(tasksCol, up.task.id), { ...up.task, subs: newSubs });
+    });
+    
+    await batch.commit();
+    
+    banner.className = 'sync-banner success';
+    text.innerHTML = `<b>✅ הסתיים בהצלחה!</b><br>הוספו ${missingNew.length} משימות חדשות ועודכנו ${missingUpdates.length} משימות.`;
+    btn.style.display = 'none';
+    
+    setTimeout(() => {
+      banner.style.display = 'none';
+    }, 5000);
+  } catch (e) {
+    console.error('Apply error:', e);
+    text.innerHTML = '<b>❌ שגיאה.</b> נסה שוב או צלם את ה-Console.';
+    btn.disabled = false;
+    btn.textContent = 'נסה שוב';
+  }
+}
+
+function updateSyncBanner() {
+  const banner = document.getElementById('sync-banner');
+  const text = document.getElementById('sync-banner-text');
+  const { missingNew, missingUpdates } = findMissing();
+  const total = missingNew.length + missingUpdates.length;
+  
+  if (total === 0) {
+    banner.style.display = 'none';
+  } else {
+    banner.style.display = 'flex';
+    banner.className = 'sync-banner';
+    text.innerHTML = `<b>🔄 יש משימות חדשות להוסיף!</b><br>זוהו ${missingNew.length} משימות חדשות ${missingUpdates.length > 0 ? `ו-${missingUpdates.length} עדכונים לקיימות` : ''}. לחץ כדי להוסיף.`;
+  }
+}
+
+function checkLogin() {
+  const saved = sessionStorage.getItem('logged_in');
+  if (saved === 'yes') { showApp(); return; }
+  document.getElementById('login-input').focus();
+}
+
+function attemptLogin() {
+  const v = document.getElementById('login-input').value;
+  if (v === PASSWORD) {
+    sessionStorage.setItem('logged_in', 'yes');
+    showApp();
+  } else {
+    document.getElementById('login-error').textContent = 'סיסמה שגויה';
+    document.getElementById('login-input').value = '';
+    setTimeout(() => { document.getElementById('login-error').textContent = ''; }, 2000);
+  }
+}
+
+function showApp() {
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  startSync();
+}
+
+document.getElementById('login-btn').addEventListener('click', attemptLogin);
+document.getElementById('login-input').addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
+document.getElementById('b-sync-now').addEventListener('click', applyMissing);
+
+function setSyncStatus(state, text) {
+  document.getElementById('sync-dot').className = 'sync-dot ' + state;
+  document.getElementById('sync-text').textContent = text;
+}
+
+window.addEventListener('online', () => setSyncStatus('', 'מסונכרן'));
+window.addEventListener('offline', () => setSyncStatus('offline', 'לא מקוון'));
+
+function startSync() {
+  setSyncStatus('syncing', 'מסנכרן...');
+  onSnapshot(tasksCol, (snapshot) => {
+    const docs = [];
+    snapshot.forEach(d => {
+      const data = d.data();
+      if (data.link && (!data.files || data.files.length === 0)) {
+        if (data.link.startsWith('http')) {
+          data.files = [{ name: 'קישור', url: data.link }];
+        } else {
+          data.contact = data.link;
+          data.files = [];
+        }
+      }
+      if (!data.files) data.files = [];
+      if (!data.subs) data.subs = [];
+      docs.push({ ...data, id: d.id });
+    });
+    T = docs;
+    document.getElementById('loading').style.display = 'none';
+    setSyncStatus('', navigator.onLine ? 'מסונכרן' : 'לא מקוון');
+    updateSyncBanner();
+    render();
+  }, (err) => {
+    console.error('Sync error:', err);
+    setSyncStatus('error', 'שגיאת סנכרון');
+  });
+}
+
+async function saveTask(t) {
+  setSyncStatus('syncing', 'שומר...');
+  try {
+    await setDoc(doc(tasksCol, t.id), t);
+    setSyncStatus('', 'מסונכרן');
+  } catch (e) { console.error(e); setSyncStatus('error', 'שגיאת שמירה'); }
+}
+
+async function deleteTaskDoc(id) {
+  setSyncStatus('syncing', 'מוחק...');
+  try {
+    await deleteDoc(doc(tasksCol, id));
+    setSyncStatus('', 'מסונכרן');
+  } catch (e) { console.error(e); setSyncStatus('error', 'שגיאת מחיקה'); }
+}
+
+function td() { return new Date().toISOString().slice(0, 10); }
+function db2(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
+function ov(t) { return t.due && t.status !== 'done' && t.due < td(); }
+function tw(t) { if (!t.due || t.status === 'done') return false; const d = db2(td(), t.due); return d >= 0 && d <= 7; }
+function nr(t) { if (!t.due || t.status === 'done') return false; const d = db2(td(), t.due); return d >= 0 && d <= (t.reminder || 0); }
+function fd(due) {
+  if (!due) return '';
+  const d = db2(td(), due);
+  if (d < 0) return `באיחור (${-d} ימים)`;
+  if (d === 0) return 'היום';
+  if (d === 1) return 'מחר';
+  if (d <= 7) return `בעוד ${d} ימים`;
+  return new Date(due).toLocaleDateString('he-IL');
+}
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function subsProgress(subs) {
+  if (!subs || subs.length === 0) return null;
+  const done = subs.filter(s => s.done).length;
+  return Math.round((done / subs.length) * 100);
+}
+
+function renderTask(t) {
+  const o = ov(t), re = nr(t) && !o;
+  let cls = 'task';
+  if (t.status === 'done') cls += ' done';
+  if (o) cls += ' over';
+  else if (t.priority === 'urgent') cls += ' urg';
+  else if (t.priority === 'high') cls += ' hi';
+
+  const sc = SC[t.status] || SC.todo, pc = PC[t.priority] || PC.medium;
+  const lc = LC[t.location] || ['#F1EFE8', '#444441'];
+
+  let dh = '';
+  if (t.due) {
+    const c = o ? 'var(--danger)' : (re ? 'var(--warn)' : 'var(--text2)');
+    const bell = (re || o) ? '🔔 ' : '';
+    dh = `<span style="color:${c};">${bell}${fd(t.due)}</span>`;
+  }
+
+  const tg = (t.tags || []).map(x => `<span class="badge" style="background:var(--bg3);color:var(--text2);">#${esc(x)}</span>`).join('');
+  const ch = t.contact ? `<span style="color:var(--text2);">👤 ${esc(t.contact)}</span>` : '';
+  const subProg = subsProgress(t.subs);
+  const effectiveProgress = subProg !== null ? subProg : (t.progress || 0);
+  const ph = effectiveProgress > 0 && t.status !== 'done' ? `<div class="pb"><div class="pf" style="width:${effectiveProgress}%;"></div></div>` : '';
+
+  let lo = '';
+  if (t.location) {
+    lo = `<span class="badge" style="background:${lc[0]};color:${lc[1]};font-weight:500;">📍 ${esc(t.location)}${t.sublocation ? ' › ' + esc(t.sublocation) : ''}</span>`;
+  }
+
+  let filesHtml = '';
+  if (t.files && t.files.length > 0) {
+    filesHtml = '<div class="task-files">' + t.files.map(f => {
+      const icon = fileIcon(f.url, f.name);
+      return `<a href="${esc(f.url)}" target="_blank" rel="noopener" class="file-link" onclick="event.stopPropagation()">${icon} ${esc(f.name || 'קובץ')}</a>`;
+    }).join('') + '</div>';
+  }
+
+  let subsHtml = '';
+  if (t.subs && t.subs.length > 0) {
+    const doneCount = t.subs.filter(s => s.done).length;
+    subsHtml = '<div class="task-subtasks">' + t.subs.map((s, i) => `
+      <div class="task-subtask">
+        <input type="checkbox" ${s.done ? 'checked' : ''} class="sub-ck" data-task-id="${t.id}" data-sub-idx="${i}" onclick="event.stopPropagation()" />
+        <span class="task-subtask-text ${s.done ? 'done' : ''}">${esc(s.text)}</span>
+      </div>
+    `).join('') + `<div class="subtask-progress">בוצעו ${doneCount} מתוך ${t.subs.length}</div></div>`;
+  }
+
+  return `<div class="${cls}" data-id="${t.id}">
+    <div class="task-row">
+      <input type="checkbox" ${t.status === 'done' ? 'checked' : ''} class="ck" data-id="${t.id}" onclick="event.stopPropagation()" />
+      <div class="task-body">
+        <div class="task-title-row">
+          <span class="task-title ${t.status === 'done' ? 'done' : ''}">${esc(t.title)}</span>
+          ${lo}
+          <span class="badge" style="background:${sc[0]};color:${sc[1]};">${SL[t.status]}</span>
+          <span class="badge" style="background:${pc[0]};color:${pc[1]};">${PL[t.priority]}</span>
+          ${t.project ? `<span class="badge" style="background:#EEEDFE;color:#3C3489;">${esc(t.project)}</span>` : ''}
+          ${tg}
+        </div>
+        <div class="task-meta">
+          <span>${esc(t.assignee || 'אסף')}</span>
+          ${dh}
+          ${ch}
+          ${effectiveProgress > 0 && t.status !== 'done' ? `<span>${effectiveProgress}%</span>` : ''}
+          ${t.files && t.files.length > 0 ? `<span style="color:var(--info);">📎 ${t.files.length}</span>` : ''}
+          ${t.subs && t.subs.length > 0 ? `<span style="color:var(--info);">✅ ${t.subs.filter(s=>s.done).length}/${t.subs.length}</span>` : ''}
+        </div>
+        ${t.notes ? `<div class="task-notes">${esc(t.notes)}</div>` : ''}
+        ${subsHtml}
+        ${filesHtml}
+        ${ph}
+      </div>
+    </div>
+  </div>`;
+}
+
+function render() {
+  document.getElementById('s-total').textContent = T.length;
+  document.getElementById('s-active').textContent = T.filter(t => t.status !== 'done').length;
+  document.getElementById('s-over').textContent = T.filter(ov).length;
+  document.getElementById('s-week').textContent = T.filter(tw).length;
+  document.getElementById('s-done').textContent = T.filter(t => t.status === 'done').length;
+
+  const fl = document.getElementById('fl'), cl = fl.value;
+  const locs = [...new Set(T.map(t => t.location).filter(Boolean))].sort();
+  fl.innerHTML = '<option value="all">כל המיקומים</option>' + locs.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join('');
+  fl.value = cl || 'all';
+
+  const fsl = document.getElementById('fsl'), csl = fsl.value;
+  const sb = fl.value !== 'all' ? T.filter(t => t.location === fl.value) : T;
+  const sls = [...new Set(sb.map(t => t.sublocation).filter(Boolean))].sort();
+  fsl.innerHTML = '<option value="all">כל הנקודתיים</option>' + sls.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join('');
+  fsl.value = sls.includes(csl) ? csl : 'all';
+
+  const fp = document.getElementById('fp'), cp = fp.value;
+  const prs = [...new Set(T.map(t => t.project).filter(Boolean))].sort();
+  fp.innerHTML = '<option value="all">כל הפרויקטים</option>' + prs.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('');
+  fp.value = cp || 'all';
+
+  document.getElementById('loc-list').innerHTML = locs.map(l => `<option value="${esc(l)}">`).join('');
+  const allSubs = [...new Set(T.map(t => t.sublocation).filter(Boolean))].sort();
+  document.getElementById('sloc-list').innerHTML = allSubs.map(l => `<option value="${esc(l)}">`).join('');
+  document.getElementById('pr-list').innerHTML = prs.map(p => `<option value="${esc(p)}">`).join('');
+
+  const q = document.getElementById('search').value.toLowerCase();
+  const fs = document.getElementById('fs').value;
+  const fa = document.getElementById('fa').value;
+
+  let f = T.filter(t => {
+    if (fs !== 'all' && t.status !== fs) return false;
+    if (fl.value !== 'all' && t.location !== fl.value) return false;
+    if (fsl.value !== 'all' && t.sublocation !== fsl.value) return false;
+    if (fp.value !== 'all' && t.project !== fp.value) return false;
+    if (fa !== 'all' && t.assignee !== fa) return false;
+    if (q) {
+      const fileNames = (t.files || []).map(f => f.name || '').join(' ');
+      const subNames = (t.subs || []).map(s => s.text || '').join(' ');
+      const h = (t.title + ' ' + (t.notes || '') + ' ' + (t.tags || []).join(' ') + ' ' + (t.project || '') + ' ' + (t.location || '') + ' ' + (t.sublocation || '') + ' ' + (t.contact || '') + ' ' + fileNames + ' ' + subNames).toLowerCase();
+      if (!h.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const po = {urgent: 0, high: 1, medium: 2, low: 3};
+  f.sort((a, b) => {
+    if (a.status === 'done' && b.status !== 'done') return 1;
+    if (a.status !== 'done' && b.status === 'done') return -1;
+    const ao = ov(a) ? 0 : 1, bo = ov(b) ? 0 : 1;
+    if (ao !== bo) return ao - bo;
+    const ap = po[a.priority] ?? 2, bp = po[b.priority] ?? 2;
+    if (ap !== bp) return ap - bp;
+    if (a.due && b.due) return a.due.localeCompare(b.due);
+    if (a.due) return -1;
+    if (b.due) return 1;
+    return 0;
+  });
+
+  const list = document.getElementById('list'), empty = document.getElementById('empty');
+  if (f.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; }
+  else { empty.style.display = 'none'; list.innerHTML = f.map(renderTask).join(''); }
+
+  list.querySelectorAll('.task').forEach(el => el.addEventListener('click', () => openEdit(el.dataset.id)));
+  list.querySelectorAll('.ck').forEach(el => el.addEventListener('click', e => { e.stopPropagation(); toggleDone(el.dataset.id); }));
+  list.querySelectorAll('.sub-ck').forEach(el => el.addEventListener('click', e => { e.stopPropagation(); toggleSub(el.dataset.taskId, parseInt(el.dataset.subIdx)); }));
+}
+
+async function toggleDone(id) {
+  const t = T.find(x => x.id === id);
+  if (!t) return;
+  const updated = { ...t, status: t.status === 'done' ? 'todo' : 'done' };
+  if (updated.status === 'done') updated.progress = 100;
+  await saveTask(updated);
+}
+
+async function toggleSub(taskId, subIdx) {
+  const t = T.find(x => x.id === taskId);
+  if (!t || !t.subs || !t.subs[subIdx]) return;
+  const updated = { ...t, subs: t.subs.map((s, i) => i === subIdx ? { ...s, done: !s.done } : s) };
+  updated.progress = subsProgress(updated.subs) || 0;
+  await saveTask(updated);
+}
+
+function renderSubsList() {
+  const list = document.getElementById('subtasks-list');
+  if (editingSubs.length === 0) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">אין תת-משימות</div>';
+    updateAutoProgress();
+    return;
+  }
+  list.innerHTML = editingSubs.map((s, i) => `
+    <div class="sub-row">
+      <input type="checkbox" ${s.done ? 'checked' : ''} data-idx="${i}" class="sub-toggle" />
+      <input type="text" value="${esc(s.text)}" data-idx="${i}" class="sub-text ${s.done ? 'done' : ''}" />
+      <button type="button" class="btn-icon" data-idx="${i}">✕</button>
+    </div>
+  `).join('');
+  list.querySelectorAll('.btn-icon').forEach(b => b.addEventListener('click', () => { editingSubs.splice(parseInt(b.dataset.idx), 1); renderSubsList(); }));
+  list.querySelectorAll('.sub-toggle').forEach(c => c.addEventListener('change', () => { editingSubs[parseInt(c.dataset.idx)].done = c.checked; renderSubsList(); }));
+  list.querySelectorAll('.sub-text').forEach(input => input.addEventListener('change', () => { editingSubs[parseInt(input.dataset.idx)].text = input.value; }));
+  updateAutoProgress();
+}
+
+function updateAutoProgress() {
+  const auto = subsProgress(editingSubs);
+  const note = document.getElementById('auto-progress');
+  const slider = document.getElementById('fpro');
+  const out = document.getElementById('fpo');
+  if (auto !== null) {
+    slider.value = auto;
+    out.textContent = auto;
+    note.textContent = '(אוטומטי לפי תת-משימות)';
+    slider.disabled = true;
+  } else {
+    note.textContent = '';
+    slider.disabled = false;
+  }
+}
+
+function addSubFromForm() {
+  const v = document.getElementById('sub-input').value.trim();
+  if (!v) return;
+  editingSubs.push({ text: v, done: false });
+  document.getElementById('sub-input').value = '';
+  renderSubsList();
+}
+
+function renderFilesList() {
+  const list = document.getElementById('files-list');
+  if (editingFiles.length === 0) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">אין קבצים</div>';
+    return;
+  }
+  list.innerHTML = editingFiles.map((f, i) => {
+    const icon = fileIcon(f.url, f.name);
+    return `<div class="file-row">
+      <span class="file-icon">${icon}</span>
+      <span class="file-name">${esc(f.name || 'קובץ')}</span>
+      <a href="${esc(f.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">פתח</a>
+      <button type="button" class="btn-icon" data-idx="${i}">✕</button>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.btn-icon').forEach(b => b.addEventListener('click', () => { editingFiles.splice(parseInt(b.dataset.idx), 1); renderFilesList(); }));
+}
+
+function addFileFromForm() {
+  const name = document.getElementById('file-name').value.trim();
+  const url = document.getElementById('file-url').value.trim();
+  if (!url) { alert('נא הדבק קישור'); return; }
+  if (!url.startsWith('http')) { alert('הקישור חייב להתחיל ב-http או https'); return; }
+  editingFiles.push({ name: name || 'קובץ ' + (editingFiles.length + 1), url });
+  document.getElementById('file-name').value = '';
+  document.getElementById('file-url').value = '';
+  renderFilesList();
+}
+
+function openModal(t) {
+  ed = t ? t.id : null;
+  editingFiles = t && t.files ? JSON.parse(JSON.stringify(t.files)) : [];
+  editingSubs = t && t.subs ? JSON.parse(JSON.stringify(t.subs)) : [];
+  document.getElementById('modal-title').textContent = t ? 'עריכת משימה' : 'משימה חדשה';
+  document.getElementById('ft').value = t?.title || '';
+  document.getElementById('fn').value = t?.notes || '';
+  document.getElementById('floc').value = t?.location || '';
+  document.getElementById('fsloc').value = t?.sublocation || '';
+  document.getElementById('fpr').value = t?.project || '';
+  document.getElementById('fas').value = t?.assignee || 'אסף';
+  document.getElementById('fpri').value = t?.priority || 'medium';
+  document.getElementById('fst').value = t?.status || 'todo';
+  document.getElementById('fd').value = t?.due || '';
+  document.getElementById('frem').value = t?.reminder ?? 1;
+  document.getElementById('fpro').value = t?.progress || 0;
+  document.getElementById('fpo').textContent = t?.progress || 0;
+  document.getElementById('ftg').value = (t?.tags || []).join(', ');
+  document.getElementById('flk').value = t?.contact || '';
+  document.getElementById('file-name').value = '';
+  document.getElementById('file-url').value = '';
+  document.getElementById('sub-input').value = '';
+  renderFilesList();
+  renderSubsList();
+  document.getElementById('b-del').style.display = t ? 'inline-block' : 'none';
+  document.getElementById('modal-bg').classList.add('show');
+}
+
+function openEdit(id) {
+  const t = T.find(x => x.id === id);
+  if (t) openModal(t);
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('show');
+  ed = null;
+  editingFiles = [];
+  editingSubs = [];
+}
+
+async function saveForm() {
+  const ti = document.getElementById('ft').value.trim();
+  if (!ti) { alert('נא הזן כותרת'); return; }
+  const pendingUrl = document.getElementById('file-url').value.trim();
+  if (pendingUrl && pendingUrl.startsWith('http')) {
+    const pendingName = document.getElementById('file-name').value.trim();
+    editingFiles.push({ name: pendingName || 'קובץ ' + (editingFiles.length + 1), url: pendingUrl });
+  }
+  const pendingSub = document.getElementById('sub-input').value.trim();
+  if (pendingSub) editingSubs.push({ text: pendingSub, done: false });
+
+  const autoProg = subsProgress(editingSubs);
+  const progress = autoProg !== null ? autoProg : (parseInt(document.getElementById('fpro').value) || 0);
+
+  const d = {
+    title: ti,
+    notes: document.getElementById('fn').value,
+    location: document.getElementById('floc').value.trim(),
+    sublocation: document.getElementById('fsloc').value.trim(),
+    project: document.getElementById('fpr').value.trim(),
+    assignee: document.getElementById('fas').value,
+    priority: document.getElementById('fpri').value,
+    status: document.getElementById('fst').value,
+    due: document.getElementById('fd').value,
+    reminder: parseInt(document.getElementById('frem').value) || 0,
+    progress: progress,
+    tags: document.getElementById('ftg').value.split(',').map(s => s.trim()).filter(Boolean),
+    contact: document.getElementById('flk').value.trim(),
+    files: editingFiles,
+    subs: editingSubs
+  };
+  if (d.status === 'done') d.progress = 100;
+  let task;
+  if (ed) {
+    const existing = T.find(t => t.id === ed);
+    task = { ...existing, ...d };
+    delete task.link;
+  } else {
+    task = { id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7), created: td(), ...d };
+  }
+  await saveTask(task);
+  closeModal();
+}
+
+async function delTask() {
+  if (!ed) return;
+  if (!confirm('למחוק את המשימה?')) return;
+  await deleteTaskDoc(ed);
+  closeModal();
+}
+
+function exportCsv() {
+  if (T.length === 0) { alert('אין משימות'); return; }
+  const h = ['כותרת','מיקום','נקודתי','פרויקט','משויך','סטטוס','דחיפות','יעד','התקדמות','תגיות','הערות','איש קשר','תת-משימות','קבצים','נוצר'];
+  const r = T.map(t => [
+    t.title, t.location || '', t.sublocation || '', t.project || '', t.assignee || '',
+    SL[t.status] || t.status, PL[t.priority] || t.priority,
+    t.due || '', (t.progress || 0) + '%',
+    (t.tags || []).join('; '),
+    (t.notes || '').replace(/\n/g, ' | '),
+    t.contact || '',
+    (t.subs || []).map(s => `${s.done ? '✓' : '○'} ${s.text}`).join(' | '),
+    (t.files || []).map(f => `${f.name}: ${f.url}`).join(' | '),
+    t.created || ''
+  ]);
+  const c = '\uFEFF' + [h, ...r].map(x => x.map(y => `"${String(y).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const bl = new Blob([c], {type: 'text/csv;charset=utf-8'});
+  const u = URL.createObjectURL(bl);
+  const a = document.createElement('a');
+  a.href = u; a.download = 'tasks_' + td() + '.csv'; a.click();
+  URL.revokeObjectURL(u);
+}
+
+document.getElementById('b-add').addEventListener('click', () => openModal(null));
+document.getElementById('b-cn').addEventListener('click', closeModal);
+document.getElementById('b-sv').addEventListener('click', saveForm);
+document.getElementById('b-del').addEventListener('click', delTask);
+document.getElementById('b-exp').addEventListener('click', exportCsv);
+document.getElementById('b-add-file').addEventListener('click', addFileFromForm);
+document.getElementById('b-add-sub').addEventListener('click', addSubFromForm);
+document.getElementById('file-url').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); addFileFromForm(); } });
+document.getElementById('sub-input').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); addSubFromForm(); } });
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('fs').addEventListener('change', render);
+document.getElementById('fl').addEventListener('change', render);
+document.getElementById('fsl').addEventListener('change', render);
+document.getElementById('fp').addEventListener('change', render);
+document.getElementById('fa').addEventListener('change', render);
+document.getElementById('fpro').addEventListener('input', e => { document.getElementById('fpo').textContent = e.target.value; });
+document.getElementById('modal-bg').addEventListener('click', e => { if (e.target.id === 'modal-bg') closeModal(); });
+
+checkLogin();
+</script>
+
+</body>
+</html>
