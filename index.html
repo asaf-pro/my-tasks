@@ -128,9 +128,7 @@ input[type="checkbox"] { width: auto; margin-left: 8px; transform: scale(1.2); }
 </div>
 
 <div id="sync-banner" class="sync-banner" style="display:none;">
-  <div class="sync-banner-text" id="sync-banner-text">
-    <b>🔄 בודק משימות חדשות...</b>
-  </div>
+  <div class="sync-banner-text" id="sync-banner-text"><b>🔄 בודק משימות חדשות...</b></div>
   <button id="b-sync-now" class="btn-success" style="display:none;">הוסף עכשיו</button>
 </div>
 
@@ -273,7 +271,9 @@ function fileIcon(url, name) {
   return '📎';
 }
 
-const NEW_TASKS = [
+// === All tasks (previous batch + new batch May 11) ===
+const ALL_NEW_TASKS = [
+  // === Previous batch (May 7) - 18 tasks ===
   { title: 'כנס הנהלה כלכלית', notes: 'יום שני בעוד שבועיים', location: 'חנתון', project: 'הנהלה עסקית', priority: 'high', status: 'todo', due: '2026-05-18', subs: [{text:'הכנת חומרים',done:false},{text:'סדר יום',done:false}] },
   { title: 'הנהלה עסקית - מיפוי תחומים', notes: 'מיפוי תחומי פעילות תחת ההנהלה העסקית', location: 'חנתון', project: 'הנהלה עסקית', priority: 'high', status: 'todo', subs: [{text:'תיירות',done:false},{text:'דוחות',done:false},{text:'אזור תעשייה',done:false}] },
   { title: 'בחינת עלויות הנה"ח', location: 'חנתון', project: 'פיננסים', priority: 'medium', status: 'todo' },
@@ -288,17 +288,67 @@ const NEW_TASKS = [
   { title: 'ישיבה עם אייל סהר - רפת', notes: 'אייל סהר מהרפת', location: 'חנתון', sublocation: 'רפת', project: 'ענפי משק', priority: 'high', status: 'in_progress', contact: 'אייל סהר', subs: [{text:'לתאם פגישת היכרות מחר',done:true},{text:'בשיחה: חידוש חוזה שותפות',done:false},{text:'בשיחה: תחזוקת מערכות סולאריות',done:false}] },
   { title: 'מי קליטה - שיחה עם רו"ח', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo' },
   { title: 'תהליך קליטה - צ\'ק ליסט עם ויקי', notes: 'בניית תהליך קליטה מסודר', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'ויקי', subs: [{text:'בניית צ\'ק ליסט',done:false},{text:'הגדרת אחריות',done:false}] },
-  { title: 'טנא - בדיקת התכנות לקליטה', notes: 'טנא - חברה שעושה בדיקה כלכלית לנקלטים. חלק מניהול תהליך הקליטה', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo', contact: 'ויקי', tags: ['טנא'] },
-  { title: 'סמסון - תהליך קליטה מקוצר', notes: 'סמסון - מועמדת ספציפית עם רגישות אחרת, דורשת טיפול אישי. תהליך מקוצר עם דמי קליטה מופחתים', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'ויקי + סמסון', tags: ['סמסון'] },
+  { title: 'טנא - בדיקת התכנות לקליטה', notes: 'טנא - חברה שעושה בדיקה כלכלית לנקלטים', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo', contact: 'ויקי', tags: ['טנא'] },
+  { title: 'סמסון - תהליך קליטה מקוצר', notes: 'סמסון - מועמדת ספציפית עם רגישות אחרת', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'ויקי + סמסון', tags: ['סמסון'] },
   { title: 'שיפוץ קרוואן קטן', location: 'חנתון', sublocation: 'שכונת קרוואנים', project: 'קרוואנים', priority: 'medium', status: 'todo' },
-  { title: 'לקבוע פגישה עם ויטמן', location: 'חנתון', project: 'פגישות', priority: 'medium', status: 'todo', contact: 'ויטמן' }
+  { title: 'לקבוע פגישה עם ויטמן', location: 'חנתון', project: 'פגישות', priority: 'medium', status: 'todo', contact: 'ויטמן' },
+
+  // === New batch (May 11) - 20 tasks ===
+  // Klitah (Absorption)
+  { title: 'מסמך קליטה לבני זוג וגרושים', notes: 'הצעה למסמך קליטה לבני זוג / גרושים', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'אביה + ויקי', subs: [{text:'הכנת הצעה למסמך',done:false},{text:'בחינה ומשוב',done:false},{text:'אישור',done:false}] },
+  { title: 'קרן צרכים מיוחדים - הקמה', notes: 'הקמת קרן + הגדרת מקור הכסף + תקנון', location: 'חנתון', project: 'קליטה', priority: 'high', status: 'todo', contact: 'אביה', subs: [{text:'הקמת הקרן',done:false},{text:'הגדרת מאיפה בא הכסף',done:false},{text:'תקנון מאושר',done:false},{text:'לתאם עם אביה',done:false}] },
+  { title: 'חוזה קליטה - צרכים מיוחדים והסתרת פרטים', notes: 'עדכון חוזה הקליטה לכלול התייחסות לצרכים מיוחדים והסתרת פרטים אישיים', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo' },
+  { title: 'עלות בנייה - מינימום 3 מיליון', notes: 'הערה כללית לתהליך הקליטה: עלות בנייה לא תרד מ-3 מיליון', location: 'חנתון', project: 'קליטה', priority: 'medium', status: 'todo' },
+
+  // Vehicle
+  { title: 'קניית רכב לקיבוץ - 90 אש"ח', notes: 'אושר במזכירות: 90 אש"ח', location: 'חנתון', project: 'ארגוני', priority: 'high', status: 'todo', subs: [{text:'בחירה: משפחתי או 7 מקומות',done:false},{text:'השוואת ליסינג',done:false},{text:'חשמלי?',done:false},{text:'צ\'יפים',done:false},{text:'עלות לק"מ',done:false}] },
+
+  // Finance
+  { title: 'תקציב עוקב תזרים', location: 'חנתון', project: 'פיננסים', priority: 'high', status: 'todo' },
+  { title: 'קורטק - בדיקת פער גביה מול תכנית', notes: 'קורטק לא מסתדר גביה מול תכנית', location: 'חנתון', sublocation: 'אזור תעשייה', project: 'פיננסים', priority: 'high', status: 'todo' },
+
+  // Procedures
+  { title: 'נהלי עבודה - קבלנים', notes: 'כתיבת נהלים מסודרים מול קבלנים', location: 'חנתון', project: 'ארגוני', priority: 'high', status: 'todo', subs: [{text:'הצעות מחיר',done:false},{text:'אישור חשבונות',done:false},{text:'אישור תוספות',done:false}] },
+  { title: 'נהלי עבודה - שוכרים', notes: 'כתיבת נהלים מסודרים מול שוכרים', location: 'חנתון', project: 'ארגוני', priority: 'high', status: 'todo' },
+
+  // Strategic
+  { title: 'הכנה למזכירות - תכנון ואסטרטגיה', notes: 'הכנת חומרים אסטרטגיים למזכירות הבאה', location: 'חנתון', project: 'הנהלה עסקית', priority: 'high', status: 'todo', subs: [{text:'נספח צמיחה',done:false},{text:'תעשייה',done:false},{text:'לולים',done:false},{text:'יקב',done:false},{text:'נושאים שוטפים ותקציבים',done:false},{text:'קריאת כיוון: תב"ע, שכ"ד, קרוואנים, מבני ציבור, מזרדים',done:false}] },
+
+  // Rentals & containers
+  { title: 'העלאת מחירי מכולות', notes: 'כרגע 30 בשנה, מגיע ל-800. לעשות סדר ולהעלות', location: 'חנתון', project: 'פיננסים', priority: 'high', status: 'todo' },
+
+  // Refet (Cattle)
+  { title: 'שותפות רפת - מה קורה', notes: 'בירור מצב השותפות ברפת', location: 'חנתון', sublocation: 'רפת', project: 'ענפי משק', priority: 'high', status: 'todo', subs: [{text:'מינוף - מה היכולות שלנו',done:false},{text:'שכ"ד - בקשת אוריאל להעלות משמעותית',done:false},{text:'החלפת גזבר',done:false},{text:'סולארי',done:false}] },
+
+  // Solar
+  { title: 'דו"ח מצב סולארי', notes: 'הכנת דו"ח מצב כללי', location: 'חנתון', project: 'תשתיות', priority: 'high', status: 'todo', subs: [{text:'סולארי רפת',done:false},{text:'סולארי כללי',done:false}] },
+  { title: 'מעבר סולארי ישן לחדש', location: 'חנתון', project: 'תשתיות', priority: 'medium', status: 'todo' },
+
+  // Legal - Karmit
+  { title: 'חבילת מסמכים לכרמית דורון - עו"ד', notes: 'כרמית דורון - עו"ד הקיבוץ. חבילה של מסמכים שצריכה להעביר אליה', location: 'חנתון', project: 'משפטי', priority: 'high', status: 'todo', contact: 'כרמית דורון - עו"ד', subs: [{text:'ההסכם הסולארי',done:false},{text:'תקנון הקיבוץ',done:false},{text:'טמפלט מסמכי קליטה קיימים',done:false},{text:'שכ"ד רפת - בקשת אוריאל יו"ר',done:false},{text:'לראות מה ניתן לשפר',done:false}] },
+
+  // Pawer Gin
+  { title: 'פאוואר ג\'ין - הסכם אגרו ואגירה', notes: 'הסכם אגרו ואגירה', location: 'חנתון', sublocation: 'אזור תעשייה', project: 'אזור תעשייה', priority: 'high', status: 'todo', subs: [{text:'פגישה',done:false},{text:'השוואת התנאים',done:false},{text:'להעביר להנהלה כלכלית',done:false}] },
+
+  // Amiran
+  { title: 'עמירן - אזור תעשייה', notes: '🟡 לפרט - להחזיר לעמירן מה התנאים שאיתם זה יקרה', location: 'חנתון', sublocation: 'אזור תעשייה', project: 'אזור תעשייה', priority: 'medium', status: 'todo', contact: 'עמירן' },
+
+  // Caravans
+  { title: 'פירוט תשלומים שיפוצי יסודות 2026', notes: 'לבקש מעבד פירוט על התשלומים של שיפוצי היסודות מ-2026', location: 'חנתון', sublocation: 'שכונת קרוואנים', project: 'קרוואנים', priority: 'medium', status: 'todo', contact: 'עבד (קבלן)' },
+
+  // Computing
+  { title: 'ג\'יני מחשוב - סידור כלל המחשבים', notes: 'ג\'יני מחשוב - לבוא לסדר את כלל המחשבים בקיבוץ', location: 'חנתון', project: 'תשתיות', priority: 'medium', status: 'todo', contact: 'ג\'יני מחשוב' },
+
+  // Hamo & Hagar
+  { title: 'חמו והגר - חוזרים בנוגע לפגישה', notes: '🟡 חמו והגר לא חזרו בנוגע לפגישה - לעקוב', location: 'חנתון', project: 'פגישות', priority: 'medium', status: 'todo', contact: 'חמו והגר' }
 ];
 
 const TASK_UPDATES = [
   { matchTitle: 'תיאום פגישה - טלי', addSubs: [{text:'דיון על שכר חודשי - עובדים',done:false}] },
   { matchTitle: 'הצעה מאלי סלונס', addSubs: [{text:'לקבוע פגישה',done:false}] },
   { matchTitle: 'ריכוז עם עומר', addSubs: [{text:'שינוי מורשי חתימה',done:false},{text:'הגדלת שכ"ד וחידוש חוזה',done:false}] },
-  { matchTitle: 'מסמכי פיננסים', addSubs: [{text:'מצב תזרים תקציב - דחוף',done:false}] }
+  { matchTitle: 'מסמכי פיננסים', addSubs: [{text:'מצב תזרים תקציב - דחוף',done:false}] },
+  { matchTitle: 'טנא - בדיקת התכנות', addSubs: [{text:'לתאם עם טלי וויקי',done:false}] }
 ];
 
 function mkNewTask(t, idx) {
@@ -318,7 +368,7 @@ function mkNewTask(t, idx) {
 function findMissing() {
   const missingNew = [];
   const missingUpdates = [];
-  NEW_TASKS.forEach(nt => {
+  ALL_NEW_TASKS.forEach(nt => {
     if (!T.find(t => t.title === nt.title)) missingNew.push(nt);
   });
   TASK_UPDATES.forEach(up => {
@@ -360,12 +410,11 @@ async function applyMissing() {
     banner.className = 'sync-banner success';
     text.innerHTML = `<b>✅ הסתיים בהצלחה!</b><br>הוספו ${missingNew.length} משימות חדשות ועודכנו ${missingUpdates.length} משימות.`;
     btn.style.display = 'none';
-    
     setTimeout(() => { banner.style.display = 'none'; }, 6000);
   } catch (e) {
     console.error('Apply error:', e);
     banner.className = 'sync-banner error';
-    text.innerHTML = '<b>❌ שגיאה:</b> ' + (e.message || 'לא ידוע') + '<br>נסה שוב או צלם מסך של שגיאה זו.';
+    text.innerHTML = '<b>❌ שגיאה:</b> ' + (e.message || 'לא ידוע');
     btn.disabled = false;
     btn.textContent = 'נסה שוב';
   }
